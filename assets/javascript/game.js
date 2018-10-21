@@ -40,6 +40,7 @@ function mysteryLetter(letters) {
     return letters[Math.floor(Math.random() * game.letters.length)];
 };
 console.log(mysteryLetter(game.letters));
+game.mysteryLetter.push(mysteryLetter(game.letters));
 
 //Update display
 function updateDisplay() {
@@ -49,15 +50,32 @@ function updateDisplay() {
     document.getElementById("lettersGuessed").innerHTML = game.lettersGuessed;
 };
 
+// function makeGuess(letter) {
+//     if (game.guessesLeft > 0) {
+//         if (lettersGuessed.indexOf(letter) === -1) {
+//             lettersGuessed.push(letter);
+//             evaluateGuess(letter);
+//         }
+//     }
+//     mysteryLetter(letters);
+// };
+
 //Key functions
 document.onkeyup = function (event) {
-    var guess = event.key.toLowerCase();
-    document.getElementById("lettersGuessed").innerHTML = game.lettersGuessed.push(guess);
-    if (guess === game.mysteryLetter) {
+    var userGuess = event.key.toLowerCase();
+    if (game.hasFinished) {
+        resetGame();
+        hasFinished = false;
+    } else {
+        if (event.keyCode >= 65 && event.keyCode <= 90) {
+            game.lettersGuessed.push();
+        }
+    };
+    if (userGuess === game.mysteryLetter) {
         game.winCount++;
         mysteryLetter(game.letters);
         game.lettersGuessed = [];
-    } else (guess !== game.mysteryLetter); {
+    } else (userGuess != game.mysteryLetter); {
         game.lossCount++;
         mysteryLetter(game.letters);
         game.guessesLeft--;
