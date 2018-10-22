@@ -15,10 +15,11 @@ body {
     border-bottom: solid 2px rosybrown;
 }
 .header {
-    font-size: 30px;
+    font-size: 32px;
     padding: 10px;
     margin: 40px 400px;
     color: tan;
+    
 }
 .info {
     font-size: 24px;
