@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../images/wood_pattern.png);
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    margin: 15px 325px;
+}
+.header {
+    font-size: 30px;
+}
+.info {
+    font-size: 24px;
+}
