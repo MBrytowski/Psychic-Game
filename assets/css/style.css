@@ -18,9 +18,11 @@ body {
     font-size: 30px;
     padding: 10px;
     margin: 40px 300px;
+    color: tan;
 }
 .info {
     font-size: 24px;
     padding: 10px;
     margin: 15px 250px;
+    color: brown;
 }
