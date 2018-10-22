@@ -22,7 +22,9 @@ window.onload = function () {
             } else if (guessesLeft !== 0) {
                 game.lossCount++;
                 game.guessesLeft--;
-            } else if (game.guessesLeft === 0) {
+            } 
+
+        if (game.guessesLeft === 0) {
                 if (game.lossCount > game.winCount) {
                     alert("C'mon son!")
                     resetGame();
@@ -32,18 +34,17 @@ window.onload = function () {
                 } else {
                     resetGame();
                 }
-            }
-
+            }    
             //Reset Game
             function resetGame() {
-                if (guessesLeft === 0) {
                 userGuess = "";
                 game.lossCount = 0;
                 game.winCount = 0;
                 game.guessesLeft = 10;
+            
             }
-        }
-        } else if (event.keyCode < 65 || event.keyCode > 90) {
+        } 
+        else if (event.keyCode < 65 || event.keyCode > 90) {
             userGuess = "";
         }
 
