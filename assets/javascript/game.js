@@ -8,39 +8,56 @@ var game = {
         "i", "j", "k", "l", "m", "n", "o", "p",
         "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
     ],
-};
+}; 
 
 window.onload = function () {
+    var mysteryLetter = game.alphabet[Math.floor(Math.random() * game.alphabet.length)];
     document.onkeyup = function (event) {
         var userGuess = event.key.toLowerCase();
-        var mysteryLetter = game.alphabet[Math.floor(Math.random() * game.alphabet.length)];
+        game.lettersGuessed.push(userGuess);
+        document.getElementById("lettersGuessed").innerHTML = game.lettersGuessed;
+        console.log(game.lettersGuessed);
         console.log(mysteryLetter);
-        if (event.keyCode >= 65 && event.keyCode <= 90) {
-            if (userGuess === mysteryLetter) {
-                game.guessesLeft--;
-                game.winCount++;
-            } else if (guessesLeft !== 0) {
-                game.lossCount++;
-                game.guessesLeft--;
-            } 
+        if (game.guessesLeft !== 0) {
+            if (event.keyCode >= 65 && event.keyCode <= 90) {
+                if (userGuess === mysteryLetter) {
+                    game.guessesLeft--;
+                    document.getElementById("guessesLeft").innerHTML = game.guessesLeft;
+                    game.winCount++;
+                    document.getElementById("totalWins").innerHTML = game.winCount;
+                } else {
+                    game.lossCount++;
+                    document.getElementById("totalLosses").innerHTML = game.lossCount;
+                    game.guessesLeft--;
+                    document.getElementById("guessesLeft").innerHTML = game.guessesLeft;
+                }
+                
+        
+        
+        
+ 
+        }
 
-        if (game.guessesLeft === 0) {
-                if (game.lossCount > game.winCount) {
-                    alert("C'mon son!")
-                    resetGame();
-                } else if (game.winCount > game.lossCount) {
+        if (game.guessesLeft === 0 || game.winCount === 1) {
+            console.log(game.winCount);
+                if (game.winCount === 1) {
                     alert("*Fist Bump*");
                     resetGame();
                 } else {
+                    alert("C'mon son!");
                     resetGame();
                 }
+
             }    
             //Reset Game
             function resetGame() {
+                console.log("Game reset");
                 userGuess = "";
                 game.lossCount = 0;
                 game.winCount = 0;
                 game.guessesLeft = 10;
+                mysteryLetter = game.alphabet[Math.floor(Math.random() * game.alphabet.length)];
+                game.lettersGuessed = [];
             
             }
         } 
@@ -48,10 +65,7 @@ window.onload = function () {
             userGuess = "";
         }
 
-        document.getElementById("totalWins").innerHTML = game.winCount;
-        document.getElementById("totalLosses").innerHTML = game.lossCount;
-        document.getElementById("guessesLeft").innerHTML = game.guessesLeft;
-        document.getElementById("lettersGuessed").innerHTML = userGuess;
 
+        
     };
 };
