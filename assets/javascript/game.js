@@ -2,6 +2,7 @@
 var game = {
     winCount: 0,
     lossCount: 0,
+    losses: 0,
     guessesLeft: 10,
     lettersGuessed: [],
     alphabet: ["a", "b", "c", "d", "e", "f", "g", "h",
@@ -31,35 +32,35 @@ window.onload = function () {
                     game.guessesLeft--;
                     document.getElementById("guessesLeft").innerHTML = game.guessesLeft;
                 }
-                
         
+        }
+        //Reset game
+        function resetGame() {
+            console.log("Game reset");
+            userGuess = "";
+            game.guessesLeft = 10;
+            mysteryLetter = game.alphabet[Math.floor(Math.random() * game.alphabet.length)];
+            game.lettersGuessed = [];
         
-        
- 
         }
 
-        if (game.guessesLeft === 0 || game.winCount === 1) {
+        
             console.log(game.winCount);
-                if (game.winCount === 1) {
+                if (userGuess === mysteryLetter) {
+                    document.getElementById("totalWins").innerHTML = game.winCount;
                     alert("*Fist Bump*");
                     resetGame();
-                } else {
+                } else if (game.guessesLeft === 0){
+                    
+                    document.getElementById("lossesDude").innerHTML = game.losses;
                     alert("C'mon son!");
                     resetGame();
                 }
-
-            }    
-            //Reset Game
-            function resetGame() {
-                console.log("Game reset");
-                userGuess = "";
-                game.lossCount = 0;
-                game.winCount = 0;
-                game.guessesLeft = 10;
-                mysteryLetter = game.alphabet[Math.floor(Math.random() * game.alphabet.length)];
-                game.lettersGuessed = [];
             
-            }
+
+           
+        
+            
         } 
         else if (event.keyCode < 65 || event.keyCode > 90) {
             userGuess = "";
